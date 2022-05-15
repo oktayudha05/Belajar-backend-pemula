@@ -1,6 +1,30 @@
 #Backend
 Back-End merupakan bagian dari aplikasi yang bertanggung jawab untuk menyediakan kebutuhan yang tak terlihat oleh pengguna
 
+#Web Server dan Web Service
+Web Server: Server yang dapat menjalankan program dan dapat diakses melalui internet atau intranet. 
+Web Service: Program yang dijalankan di web server agar kebutuhan bisnis terpenuhi.
+
+#Komunikasi Client-Server
+Request line	: berisikan method/verb seperti GET (mengambil data), POST (menambahkan/mengirim data), PUT 		(memperbaharui data), atau DELETE (menghapus data); path atau alamat yang diminta; dan versi HTTP yang 		digunakan.
+Header		: memuat informasi yang dilampirkan terkait request seperti format dokumen (contoh: application/json, 		text/html, dsb), kunci akses, dll.
+Body (opsional)	: mengandung data yang dibutuhkan oleh server, bisa dalam bentuk teks, JSON, dll. Body tidak wajib 				dilampirkan bila server tidak membutuhkan data apa pun.
+
+#REST Web Service
+Client-Server	: Ini merupakan hal yang paling mendasar dalam membangun REST API. Server harus bisa merespons permintaan 		yang dilakukan client, baik itu respons berhasil maupun gagal. Komunikasi client dan server dilakukan 		melalui protokol HTTP.
+
+Stateless	: REST API tidak boleh menyimpan keadaan (state) apa pun terkait client. Seluruh state harus tetap disimpan 		di client. Artinya, tidak ada session di REST API. Permintaan yang dilakukan client harus mengandung 				informasi yang jelas. Jangan berharap RESTful API akan menyimpan informasi dari permintaan sebelumnya untuk 		digunakan di permintaan selanjutnya.
+
+Cacheable	: Agar dapat merespons permintaan dengan cepat, sebaiknya REST API menerapkan prinsip cache sehingga setiap 		permintaan tidak melulu mengambil dari database.
+		Layered: Ketika REST API server memiliki arsitektur yang kompleks, client seharusnya tidak perlu tahu 				bagaimana server melayaninya.
+
+
+
 #SERVER
 Server merupakan sebuah sistem yang dapat menyediakan sumber daya berupa data, layanan, atau program untuk disajikan ke komputer lain
 
+#HTTP Verbs/Methods
+GET	: Untuk mendapatkan data.
+POST	: Untuk mengirimkan data baru.
+PUT	: Untuk memperbarui data yang ada.
+DELETE	: Untuk menghapus data.
