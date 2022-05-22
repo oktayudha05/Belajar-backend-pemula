@@ -16,7 +16,7 @@ const requestListener = (request, response) => {
         else {
             response.statusCode = 400;
             response.end(JSON.stringify({
-                message : 'halaman tidak dapat dakses dengan ${method} request',
+                message : `halaman tidak dapat dakses dengan ${method} request`,
             }))
         }
     }
