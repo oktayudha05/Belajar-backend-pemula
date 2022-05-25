@@ -42,6 +42,7 @@ const routes = [
             if (lang === 'id') {
                 return `Hai ${name}`;
         } else {
+            console.log(`${name}`);
             return `Hallo ${name}`;
             }
         },
