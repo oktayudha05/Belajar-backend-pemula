@@ -56,14 +56,6 @@ const addBookHandler = (request, h) => {
 
 
 const getBookHandler = (request, h) => {
-    // const response = h.response({
-    //     status : 'success',
-    //     data : {
-    //         books,
-    //     }
-    // }) 
-    // response.code(200) 
-    // return response 
     let name = request.query.name 
     const reading = request.query.reading 
     const finished = request.query.finished 
@@ -162,4 +154,50 @@ const getBookHandlerById = (request, h) => {
     return response 
 }
 
-module.exports = {addBookHandler, getBookHandler, getBookHandlerById} 
+const updateBook = (request, h) => {
+    const {id} = request.params
+    const {name, year, author, summary, publisher, pageCount, readPage, reading} = request.payload
+    const updateAt = new Date().toISOString()
+    
+    const index = books.findIndex((book) => book.id === id)
+    
+    if (name == false) {
+        const response = h.response({
+            status : 'fail',
+            message : 'Gagal memperbarui buku. Mohon isi nama buku'
+        })
+        response.code(400)
+        return response
+    }
+    
+    else if (readPage < pageCount) {
+        const response = h.response({
+            status : 'fail',
+            message : 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount'
+        })
+        response.code(400)
+        return response
+    }
+    
+    else if (books[index] !== -1) {
+        books[index] = {
+            ...books[index],
+            name, year, author, summary, publisher, pageCount, readPage, reading, updateAt,
+        }
+        const response = h.response({
+            status : 'success',
+            message : 'Buku berhasil diperbarui'
+        })
+        response.code(200)
+        return response
+    }
+
+    const response = h.respponse({
+        status : 'fail',
+        message : 'Gagal memperbarui buku. Id tidak ditemukan'
+    })
+    response.code(404)
+    return response
+}
+
+module.exports = {addBookHandler, getBookHandler, getBookHandlerById, updateBook} 
