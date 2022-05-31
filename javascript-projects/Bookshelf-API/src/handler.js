@@ -118,7 +118,6 @@ const getBookHandler = (request, h) => {
     }
 
     else {
-        console.log(books);
         const response = h.response({
             status : 'success',
             data : {
@@ -182,21 +181,12 @@ const updateBook = (request, h) => {
      if (index !== -1) {
         books[index] = {
             ...books[index],
-            name, 
-            year, 
-            author, 
-            summary, 
-            publisher, 
-            pageCount, 
-            readPage, 
-            reading, 
-            updateAt,
+            name, year, author, summary, publisher, pageCount, readPage, reading, updateAt,
         }
         const response = h.response({
             status : 'success',
             message : 'Buku berhasil diperbarui'
         })
-        console.log(books[index]);
         response.code(200)
         return response
     }
@@ -214,7 +204,7 @@ const deleteBookById = (request, h) => {
     const index = books.findIndex((book) => book.id === bookId)
     
     if (index !== -1) {
-        books.splice((index, 1))
+        books.splice(index, 1)
 
         const response = h.response({
             status : 'success',
