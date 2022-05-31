@@ -1,4 +1,4 @@
-const {addBookHandler, getBookHandler, getBookHandlerById} = require('./handler');
+const {addBookHandler, getBookHandler, getBookHandlerById} = require('./handler') 
 
 const routes = [
     {
@@ -21,4 +21,4 @@ const routes = [
     }
 ]
 
-module.exports = routes;
+module.exports = routes 
