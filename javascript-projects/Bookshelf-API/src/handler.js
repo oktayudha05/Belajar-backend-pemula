@@ -118,6 +118,7 @@ const getBookHandler = (request, h) => {
     }
 
     else {
+        console.log(books);
         const response = h.response({
             status : 'success',
             data : {
@@ -155,11 +156,10 @@ const getBookHandlerById = (request, h) => {
 }
 
 const updateBook = (request, h) => {
-    const {id} = request.params
+    const {bookId} = request.params
     const {name, year, author, summary, publisher, pageCount, readPage, reading} = request.payload
     const updateAt = new Date().toISOString()
-    
-    const index = books.findIndex((book) => book.id === id)
+    const index = books.findIndex((book) => book.id === bookId)
     
     if (name == false) {
         const response = h.response({
@@ -170,7 +170,7 @@ const updateBook = (request, h) => {
         return response
     }
     
-    else if (readPage < pageCount) {
+    else if (readPage > pageCount) {
         const response = h.response({
             status : 'fail',
             message : 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount'
@@ -179,20 +179,29 @@ const updateBook = (request, h) => {
         return response
     }
     
-    else if (books[index] !== -1) {
+     if (index !== -1) {
         books[index] = {
             ...books[index],
-            name, year, author, summary, publisher, pageCount, readPage, reading, updateAt,
+            name, 
+            year, 
+            author, 
+            summary, 
+            publisher, 
+            pageCount, 
+            readPage, 
+            reading, 
+            updateAt,
         }
         const response = h.response({
             status : 'success',
             message : 'Buku berhasil diperbarui'
         })
+        console.log(books[index]);
         response.code(200)
         return response
     }
 
-    const response = h.respponse({
+    const response = h.response({
         status : 'fail',
         message : 'Gagal memperbarui buku. Id tidak ditemukan'
     })
