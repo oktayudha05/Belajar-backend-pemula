@@ -71,7 +71,7 @@ const editNoteByIdHandler = (request, h) => {
     const updateAt = new Date().toISOString();
 
     const index = notes.findIndex((note) => note.id === id);
-    if (notes[index] !== -1){
+    if (index !== -1){
         notes[index] = {
             ...notes[index],
             title,
