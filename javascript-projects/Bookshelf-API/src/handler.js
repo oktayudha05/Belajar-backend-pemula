@@ -102,6 +102,28 @@ const getBookHandler = (request, h) => {
         response.code(200);
         return response;
     }
+
+    if (finished == 0) {
+        const book = books.filter((n) => n.finished == false);
+        const response = h.response({
+            status : 'success',
+            data : {
+                book,
+            }
+        });
+        response.code(200);
+        return response;
+    } else if (finished == 1) {
+        const book = books.filter((n) => n.finished == true);
+        const response = h.response({
+            status : 'success',
+            data : {
+                book,
+            }
+        });
+        response.code(200);
+        return response;
+    }
 };
 
 const getBookHandlerById = (request, h) => {
