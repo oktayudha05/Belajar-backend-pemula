@@ -8,7 +8,7 @@ const addBookHandler = (request, h) => {
     const insertedAt = new Date().toISOString() 
     const updatedAt = insertedAt 
     
-    if (name == false) {
+    if (!name) {
         const response = h.response({
             status : 'fail',
             message : 'Gagal menambahkan buku. Mohon isi nama buku'
@@ -66,7 +66,11 @@ const getBookHandler = (request, h) => {
         const response = h.response({
             status : 'success',
             data : {
-                book,
+                books: book.map((book) => ({
+                    name: book.name,
+                    id: book.id,
+                    publisher: book.publisher
+                }))
             }
         }) 
         response.code(200) 
@@ -78,7 +82,11 @@ const getBookHandler = (request, h) => {
         const response = h.response({
             status : 'success',
             data : {
-                book,
+                books: book.map((book) => ({
+                    name: book.name,
+                    id: book.id,
+                    publisher: book.publisher
+                })),
             }
         }) 
         response.code(200) 
@@ -88,7 +96,11 @@ const getBookHandler = (request, h) => {
         const response = h.response({
             status : 'success',
             data : {
-                book,       
+                books: book.map((book) => ({
+                    name: book.name,
+                    id: book.id,
+                    publisher: book.publisher
+                }))       
             }
         }) 
         response.code(200) 
@@ -100,7 +112,11 @@ const getBookHandler = (request, h) => {
         const response = h.response({
             status : 'success',
             data : {
-                book,
+                books: book.map((book) => ({
+                    name: book.name,
+                    id: book.id,
+                    publisher: book.publisher
+                }))
             }
         }) 
         response.code(200) 
@@ -110,7 +126,11 @@ const getBookHandler = (request, h) => {
         const response = h.response({
             status : 'success',
             data : {
-                book,
+                books: book.map((book) => ({
+                    name: book.name,
+                    id: book.id,
+                    publisher: book.publisher
+                }))
             }
         }) 
         response.code(200) 
@@ -121,7 +141,11 @@ const getBookHandler = (request, h) => {
         const response = h.response({
             status : 'success',
             data : {
-                books,
+                books: books.map((book) => ({
+                    name: book.name,
+                    id: book.id,
+                    publisher: book.publisher
+                }))
             }
         })
         response.code(200)
@@ -160,7 +184,7 @@ const updateBook = (request, h) => {
     const updateAt = new Date().toISOString()
     const index = books.findIndex((book) => book.id === bookId)
     
-    if (name == false) {
+    if (!name) {
         const response = h.response({
             status : 'fail',
             message : 'Gagal memperbarui buku. Mohon isi nama buku'
@@ -208,7 +232,7 @@ const deleteBookById = (request, h) => {
 
         const response = h.response({
             status : 'success',
-            messge : 'Buku berhasil dihapus'
+            message : 'Buku berhasil dihapus'
         })
         response.code(200)
         return response
