@@ -8,7 +8,7 @@ const addBookHandler = (request, h) => {
     const insertedAt = new Date().toISOString();
     const updatedAt = insertedAt;
     
-    if (name.length < 1) {
+    if (name == false) {
         const response = h.response({
             status : 'fail',
             message : 'Gagal menambahkan buku. Mohon isi nama buku'
@@ -56,16 +56,53 @@ const addBookHandler = (request, h) => {
 
 
 const getBookHandler = (request, h) => {
-    const response = h.response({
-        status : 'success',
-        data : {
-            books,
-        }
-    });
-    response.code(200);
-    return response;
-}
+    // const response = h.response({
+    //     status : 'success',
+    //     data : {
+    //         books,
+    //     }
+    // });
+    // response.code(200);
+    // return response;
+    let name = request.query.name;
+    const reading = request.query.reading;
+    const finished = request.query.finished;
 
+    if (name) {
+        name = name.toLowerCase().replace(/["]+/g, '');
+        const book = books.filter((n) => n.name.includes(name));
+        const response = h.response({
+            status : 'success',
+            data : {
+                book,
+            }
+        });
+        response.code(200);
+        return response;
+    }
+
+    if (reading == 0) {
+        const book = books.filter((n) => n.reading == false);
+        const response = h.response({
+            status : 'success',
+            data : {
+                book,
+            }
+        });
+        response.code(200);
+        return response;
+    } else if (reading == 1) {
+        const book = books.filter((n) => n.reading == true);
+        const response = h.response({
+            status : 'success',
+            data : {
+                book,       
+            }
+        });
+        response.code(200);
+        return response;
+    }
+};
 
 const getBookHandlerById = (request, h) => {
     const {bookId} = request.params;
