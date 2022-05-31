@@ -62,7 +62,7 @@ const getBookHandler = (request, h) => {
 
     if (name) {
         name = name.toLowerCase().replace(/["]+/g, '') 
-        const book = books.filter((n) => n.name.includes(name)) 
+        const book = books.filter((n) => n.name.toLowerCase().includes(name)) 
         const response = h.response({
             status : 'success',
             data : {
