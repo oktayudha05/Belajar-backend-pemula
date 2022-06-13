@@ -10,4 +10,6 @@ console.log("Fetching username...");
 fetchUsername().then((value) => {
     console.log(`You are logged in as ${value}`);
 })
-console.log("Welcome!");
+.finally(() => {
+    console.log("Welcome!");
+})
