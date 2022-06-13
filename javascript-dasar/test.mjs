@@ -1,14 +1,13 @@
-let myString = "";
-
-try {
-    myString += "a";
-    throw Error();
-} catch(e) {
-    myString += "b";
-} finally {
-    myString += "c";
-    throw Error();
-    myString += "d";
+function fetchUsername() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('JSUser');
+        }, 3000);
+    })
 }
 
-console.log(myString);
+console.log("Fetching username...");
+fetchUsername().then((value) => {
+    console.log(`You are logged in as ${value}`);
+})
+console.log("Welcome!");
